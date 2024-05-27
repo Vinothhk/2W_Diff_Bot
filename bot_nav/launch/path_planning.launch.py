@@ -8,6 +8,7 @@ def generate_launch_description():
     bt_navigator_yaml = os.path.join(get_package_share_directory('bot_nav'),'config','bt_navigator.yaml')
     planner_yaml = os.path.join(get_package_share_directory('bot_nav'), 'config','planner_server.yaml')
     recovery_yaml = os.path.join(get_package_share_directory('bot_nav'), 'config', 'recovery.yaml')
+    wp_follower = os.path.join(get_package_share_directory('bot_nav'), 'config', 'waypoints.yaml')
     return LaunchDescription([
 
         Node(
@@ -29,14 +30,21 @@ def generate_launch_description():
             name='behavior_server',
             parameters=[recovery_yaml],
             output='screen'),
-            
+        
+        Node(
+            package='nav2_waypoint_follower',
+            executable='waypoint_follower',
+            name='waypoint_follower_node',
+            output='screen',
+            parameters=[wp_follower]),
+        
         Node(
             package='nav2_bt_navigator',
             executable='bt_navigator',
             name='bt_navigator',
             output='screen',
             parameters=[bt_navigator_yaml]),
-
+ 
         Node(
             package='nav2_lifecycle_manager',
             executable='lifecycle_manager',
@@ -46,5 +54,7 @@ def generate_launch_description():
                         {'node_names': ['planner_server', 
                                         'controller_server',
                                         'behavior_server',
-                                        'bt_navigator']}])
+                                        'waypoint_follower_node',
+                                        'bt_navigator'
+                                        ]}])
     ])

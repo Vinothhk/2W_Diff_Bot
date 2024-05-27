@@ -362,6 +362,8 @@
         <dynamics damping="0.0" friction="0.1"/>
     </joint>
 
+    <!-- R E A L S E N S E   P L U G I N-->
+
     <!-- L A S E R -->
     <link name="laser_frame">
         <visual>

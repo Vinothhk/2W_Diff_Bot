@@ -28,8 +28,14 @@ install(
     launch
     models
     worlds
+    media
   DESTINATION
     share/${PROJECT_NAME}/
+)
+install(
+  PROGRAMS
+    launch/spawn_action.py
+  DESTINATION share/${PROJECT_NAME}
 )
 
 ament_package()
