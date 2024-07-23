@@ -30,6 +30,7 @@ endif()
 install(PROGRAMS
   scripts/waypoint_follower.py
   scripts/farm_wf.py
+  scripts/vision.py
   DESTINATION lib/${PROJECT_NAME}
 )
 install(
