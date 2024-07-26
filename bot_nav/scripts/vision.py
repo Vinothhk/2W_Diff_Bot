@@ -27,7 +27,7 @@ class CvNode(Node):
     
     def depth_callback(self,data):
         try:
-            depth_image = self.bridge.imgmsg_to_cv2(data,desired_encoding="16UC1")
+            depth_image = self.bridge.imgmsg_to_cv2(data,desired_encoding="passthrough")
         except CvBridgeError as e:
             print(e)
             
